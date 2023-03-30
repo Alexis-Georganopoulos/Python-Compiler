@@ -1,4 +1,5 @@
-#!/bin/bash
+
+
 from __future__ import print_function
 import sys, struct, shlex, operator
 import ast
