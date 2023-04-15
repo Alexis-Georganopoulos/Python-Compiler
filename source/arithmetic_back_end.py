@@ -245,7 +245,7 @@ def code_gen(x):
             error("Uknown context")
         code_gen(x.value)
     
-    elif type(x) == ast.Num:
+    elif type(x) == ast.Constant:
         emit_byte(PUSH)
         emit_word(x.n)
             
