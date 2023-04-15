@@ -617,9 +617,13 @@ def list_code():
 #*** main driver
 #input_file = sys.stdin
 #if len(sys.argv) > 1:
+from pathlib import Path
+p = Path(__file__).with_name('arithmetic_test.py')
+test_file = p.absolute()
+
 try:
                     #(sys.argv[1], "r", 4096)
-    input_file = open("arithmetic_test.py", "r")
+    input_file = open(test_file, "r")
 except IOError as e:
                         #sys.argv[1]
     error("Can't open %s" % input_file)
