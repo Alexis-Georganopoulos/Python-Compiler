@@ -1,10 +1,10 @@
 
 
 from __future__ import print_function
-import sys, struct, shlex, operator
+import struct
 import ast
+from pathlib import Path
 
-#Old reduntant code, I think it does nothing? Have never used it.
 nd_Ident, nd_String, nd_Integer, nd_Sequence, nd_If, nd_Prtc, nd_Prts, nd_Prti,\
 nd_While,nd_Assign, nd_Negate, nd_Not, nd_Mul, nd_Div, nd_Mod, nd_Add, nd_Sub,\
 nd_Lss, nd_Leq, nd_Gtr, nd_Geq, nd_Eql, nd_Neq, nd_And, nd_Or = range(25)                    
@@ -22,8 +22,8 @@ unary_operators = {nd_Negate: NEG, nd_Not: NOT}
 comp_ops = {LT:"lt", GT:"gt", LE:"le", GE:"ge", EQ:"eq", NE:"ne"}
 
 ###############################################################################
-#           CONSIDER PUTTING THE FOLLOWING IN A THYMIO.PY MODULE
 
+#WITH THYMIO IDETNIFIERS (without relying on firmware)
 event_dict = {"BUTTON.BACKWARD":"_ev.button.backward", \
 "BUTTON.LEFT":"_ev.button.left", "BUTTON.CENTER":"_ev.button.center", \
 "BUTTON.FORWARD":"_ev.button.forward", "BUTTON.RIGHT":"_ev.button.right", \
@@ -31,14 +31,15 @@ event_dict = {"BUTTON.BACKWARD":"_ev.button.backward", \
 "TAP":"_ev.tap", "ACC":"_ev.acc", "MIC":"_ev.mic", \
 "SOUND.FINISHED":"_ev.sound.finished", "TEMPERATURE":"_ev.temperature", \
 "RC5":"_ev.rc5", "MOTOR":"_ev.motor", "TIMER0":"_ev.timer0", \
-"TIMER1":"_ev.timer1", "restart":"0xffff"}#WITH THYMIO IDETNIFIERS
-                         
+"TIMER1":"_ev.timer1", "restart":"0xffff"}
+
+#WITH THYMIO HEX (reference firmware values)                         
 # event_dict = {"BUTTON.BACKWARD":"0xfffe", "BUTTON.LEFT":"0xfffd", \
 # "BUTTON.CENTER":"0xfffc", "BUTTON.FORWARD":"0xfffb", "BUTTON.RIGHT":"0xfffa", \
 # "BUTTONS":"0xfff9", "PROX":"0xfff8", "PROX.COMM":"0xfff7", "TAP":"0xfff6", \
 # "ACC":"0xfff5", "MIC":"0xfff4", "SOUND.FINISHED":"0xfff3", \
 # "TEMPERATURE":"0xfff2", "RC5":"0xfff1", "MOTOR":"0xfff0", "TIMER0":"0xffef", \
-# "TIMER1":"0xffee", "restart":"0xffff"}#WITH THYMIO HEX
+# "TIMER1":"0xffee", "restart":"0xffff"}
 
 thymio_vars = {"thymio.motor.left.target":"motor.left.target",\
                "thymio.motor.right.target":"motor.right.target",\
@@ -162,7 +163,7 @@ def fetch_var_offset(name,mode):
 #***
 def preprocessor(x,mode = 0):
     main_body = x
-#OPTIMIZE
+#OPTIMIZE (naive sorting)
     if(len(main_body) > 1):
         idx = 0
         while(idx < len(main_body)-1):
@@ -463,7 +464,7 @@ def code_gen(x):
 #***
         
 opcode = []
-def list_code():
+def list_code(debug = False):
     global opcode
     global var_offset
     membloat = [LOAD,STORE,PUSH,CALLSUB,JUMP,JIN,DC1,DC2,CALLNAT]
@@ -488,7 +489,8 @@ def list_code():
     tpc = 0
     while pc < len(code):
         #print("%4d " % (pc), end='')
-        print("%4d " % (tpc), end='')
+        if debug:
+            print("%4d " % (tpc), end='')
         op = code[pc]
         pc += 1
         tpc += 1
@@ -611,13 +613,14 @@ def list_code():
             tpc += 1
         else: 
             error("list_code: Unknown opcode %d", (op));
-    for bc in opcode:
-        print(bc)
+    if debug:
+        for bc in opcode:
+            print(bc)
  
 #*** main driver
 #input_file = sys.stdin
 #if len(sys.argv) > 1:
-from pathlib import Path
+
 p = Path(__file__).with_name('arithmetic_test.py')
 test_file = p.absolute()
 
@@ -631,4 +634,4 @@ except IOError as e:
 tree_arithmetic = ast.parse(input_file.read())
 code_gen(tree_arithmetic)
 code_finish()
-list_code()
+list_code(debug = False)
