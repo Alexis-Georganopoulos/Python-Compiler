@@ -621,7 +621,7 @@ def list_code(debug = False):
 #input_file = sys.stdin
 #if len(sys.argv) > 1:
 
-p = Path(__file__).with_name('arithmetic_test.py')
+p = Path(__file__).with_name('test_file.py')
 test_file = p.absolute()
 
 try:
