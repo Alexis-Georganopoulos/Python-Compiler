@@ -1,6 +1,6 @@
 # Python Compiler for the Thymio Robot
 
-This compiler generates bytecode to be executed on the Thymio II robot. It takes in python source code (`.py`), generates an AST (Abstract Syntax Tree), creates intermediate code, and outputs the result to the terminal.<br>
+This compiler generates bytecode to be executed on the Thymio robot. It takes in python source code (`.py`), generates an AST (Abstract Syntax Tree), creates intermediate code, and outputs the result to the terminal.<br>
 [Run the code!](#running-the-code) <br>
 or<br>
 [Read the documentation!](documentation.pdf)
