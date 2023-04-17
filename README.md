@@ -17,13 +17,13 @@ The source file ([compiler.py](source/compiler.py)) can largely be divided into 
 3. Pre-processor:<br>
     This defines a function called "preprocessor" that takes the AST as input and an optional "mode" parameter. The function reorders the AST by moving any function definitions to the end of the tree. If "mode" is set to a non-zero value, the function generates bytecode for the beginning of the intermediate code. It also creates "holes" in the emitted bytecode to be filled in later. Additionally, the function sets up global and local variables for Thymio robot events.
 4. Code generator:<br>
-   This is a compilation of different conditions for code generation, and is called recursively from the head of the AST. The code_gen() function is the main function that is responsible for generating the intermediate code based on the current branch of the AST. The branch could be of various types such as ast.Assign, ast.Call, ast.FunctionDef, and so on.<br>
+   This is a collection of different conditions for code generation, and is called recursively from the head of the AST. The code_gen() function is the main function that is responsible for generating the intermediate code based on the current branch of the AST. The branch could be of various types such as ast.Assign, ast.Call, ast.FunctionDef, and so on.<br>
     Some of the actions  include calling other functions to generate code, adding bytes and words to the code list, and modifying various other global flags and variables.
 
 5. Code printer:<br>
-   This portion simply goes through the intermediate code iteratively and prints it out to the terminal. It includes a debug mode that keeps track of the byte-array output size for each opcode produced. In a many of speaking, these are like the "line numbers" of the byte-code program memory.
+   This portion simply goes through the intermediate code iteratively and prints it out to the terminal. It includes a debug mode that keeps track of the byte-array output size for each opcode operation. In a manner of speaking, these are like the "line numbers" of the byte-code program memory.
 
-Overall, the Thymio compiler is an essential tool for developing software for the Thymio robot, allowing programmers to write high-level python code and then translate it into low-level code.
+Overall, the Thymio compiler is an essential tool for developing software for the Thymio robot, allowing programmers to write high-level python code and then translate it into low-level bytecode.
 
 ## Running the code
 After downloading the repo, go into the [source](/source/) folder, and put your code into the [test_file.py](source/test_file.py) file. There are already many commented examples demonstrating acceptable python code. Then, simply run the [compiler.py](source/compiler.py) script, and it outputs the bytecode into the terminal.<br>
