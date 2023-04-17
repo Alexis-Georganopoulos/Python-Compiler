@@ -11,8 +11,7 @@ or<br>
 The source file ([compiler.py](source/compiler.py)) can largely be divided into fivr parts:
 
 1. Constants and Construct definitions:<br>
-    defines various constants and data structures, including a dictionary to map Python operators to the corresponding operator codes in the target language, a dictionary to map Thymio event names to event identifiers, a dictionary to map Thymio variable names to variable identifiers, and a dictionary to map Thymio non-volatile variables to the corresponding byte offset and identifier.
-    It also defines a class HoleCall that stores holes in the code that need to be filled in later, for example when calling a function whose address is not yet known. The class has methods to store and retrieve hole addresses and their corresponding call addresses.
+    This defines several constants and dictionaries used by the Thymio. These include opcodes, and dictionaries for converting between Python operators and Thymio opcodes. It also includes dictionaries for Thymio-specific identifiers, variables, and native function calls. Additionally, they defines the class *HoleCall*, which is used to keep track of "holes" in the code where addresses are yet to be filled in, and scope_flag, which tracks the current scope of the code. Finally, the code sets several variables used to read and store Thymio code.
 2. Bytearray manipulation functions:<br>
    sdfdsf
 3. Pre-processor:<br>
