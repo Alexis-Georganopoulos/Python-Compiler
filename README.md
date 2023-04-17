@@ -1,9 +1,26 @@
-# Python-Compiler
+# Python Compiler for the Thymio Robot
+
+This compiler generates bytecode to be executed on the Thymio II robot. It takes in python source code (`.py`), generates an AST (Abstract Syntax Tree), creates intemediate code, and outputs the result to the terminal.<br>
+[Run the code!](#running-the-code) <br>
+or<br>
+[Read the documentation!](documentation.pdf)
 
 ![thymio_compiler](./thymio_comp.gif)
 
 
-The given code is a Python program that implements a compiler that generates a bytecode to be executed on the Thymio II robot. The compiler takes in Python AST (Abstract Syntax Tree) as input and outputs a bytecode that is compatible with Thymio II robot.
+The source file ([compiler.py](source/compiler.py)) can largely be divided into fivr parts:
+
+1. Constants and Construct definitions:<br>
+    defines various constants and data structures, including a dictionary to map Python operators to the corresponding operator codes in the target language, a dictionary to map Thymio event names to event identifiers, a dictionary to map Thymio variable names to variable identifiers, and a dictionary to map Thymio non-volatile variables to the corresponding byte offset and identifier.
+    It also defines a class HoleCall that stores holes in the code that need to be filled in later, for example when calling a function whose address is not yet known. The class has methods to store and retrieve hole addresses and their corresponding call addresses.
+2. Bytearray manipulation functions:<br>
+   sdfdsf
+3. Pre-processor:<br>
+    asdsd
+4. Code generator:<br>
+   asdasd
+5. Code printer:<br>
+   asdasd
 
 The code defines three functions:
 
@@ -62,3 +79,7 @@ The compiler consists of multiple components, including a lexer, a parser, and a
 The Thymio compiler also supports various programming languages, including Python, Blockly, and Aseba. The input code is first translated into an intermediate representation, which is then transformed into the low-level code by the code generator.
 
 Overall, the Thymio compiler is an essential tool for developing software for the Thymio robot, allowing programmers to write high-level code in their preferred language and then translate it into low-level code that can be executed on the robot.
+
+## Running the code
+After downloading the repo, go into the [source](/source/) folder, and put your code into the [test_file.py](source/test_file.py) file. There are already many commented examples demonstrating acceptable python code. Then, simply run the [compiler.py](source/compiler.py) script, and it outputs the bytecode into the terminal.<br>
+For full details about the compilers abilities, please read the [documentation](documentation.pdf)
