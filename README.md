@@ -28,6 +28,6 @@ Overall, the Thymio compiler is an essential tool for developing software for th
 ## Running the code
 After downloading the repo, go into the [source](/source/) folder, and put your code into the [test_file.py](source/test_file.py) file. There are already many commented examples demonstrating acceptable python code. Then, simply run the [compiler.py](source/compiler.py) script, and it outputs the bytecode into the terminal.<br>
 For full details about the compilers abilities, please read the [documentation](documentation.pdf) <br>
-An example of Python source code and the bytecode output (in debug mode to show the "line numbers") is show below:
+An example of Python source code and the bytecode output (in debug mode to show the "line numbers") is shown below:
 
 ![example_out](images/example_out.png)
