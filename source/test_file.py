@@ -75,33 +75,6 @@ d[2] = 5
 # ###################   THYMIO NATIVE FUNCTIONS
 # thymio.leds.top = [0, 0, 0]
 
-# ###################   DICT STRUCTURE TESTING DO NOT COMPILE WITH BACK END
-# class DictStructure:   
-#     def __init__(self):
-#         self.dict = {}#stores holes from calls/returns/etc...
-#         self.flag = 0#usefull conditional flag
-#     def store_hole(self,address,caller):
-#         self.dict[address] = caller
-#     def eject_holes(self,caller):#one call can come from many holes
-#         hole_addresses = []
-#         for address,call in self.dict.items():
-#             if call == caller:
-#                 hole_addresses.append(address)       
-#         for address in hole_addresses:
-#             self.dict.pop(address)
-#         return hole_addresses
-#     def eject_call(self,address):#but each hole has only one call
-#         caller = self.dict[address] 
-#         self.dict.pop(address)
-#         return caller
-      
-# a = DictStructure()
-# a.store_hole(1,2)
-# a.store_hole(2,3)       
-# a.store_hole(3,2)
-# a.store_hole(4,2)
-# b = a.eject_holes(2)  
-
 # ###################   PYTHON SCOPE TESTING
 # a = 10
 # print(a)
